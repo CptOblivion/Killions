@@ -17,7 +17,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float):
-	text = "\n".join(lines)
+	text = "FPS: " + str(Engine.get_frames_per_second()) + "\n"
+	text += "\n".join(lines)
 	text += "\n" + print_monsters()
 
 

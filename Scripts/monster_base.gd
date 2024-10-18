@@ -14,6 +14,10 @@ var pool: Pooler
 
 static var instance_counts = {}
 
+var grid_node: GridNode
+var grid_next: MonsterBase
+var grid_prev: MonsterBase
+
 
 func _physics_process(_delta: float) -> void:
 	var vec = Player.instance.position - position
@@ -54,3 +58,21 @@ func despawn():
 	pool.store()
 	get_parent().remove_child(self)
 	instance_counts[resource_path] -= 1
+
+func update_grid_position():
+	var pos = get_grid_pos()
+	if pos == grid_node.position: # TODO: verify that vector comparison is comparing values rather than pointers
+		return
+	var new_node = LevelController.get_grid_node(pos)
+	if new_node == null:
+		#TODO: maybe we should have some fallback behavior instead of just a kill
+		push_warning("monster got out of bounds at " + str(pos))
+		despawn()
+		return
+	# remove from current spot in current node
+	# append to head of new node
+	# update node pointer
+
+
+func get_grid_pos() -> Vector2i:
+	return position / LevelController.grid_scale_static
