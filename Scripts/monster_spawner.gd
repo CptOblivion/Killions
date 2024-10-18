@@ -19,6 +19,8 @@ func _process(delta: float):
 		interval_timer += interval_seconds + randf_range(0, interval_variance)
 		for i in range(batch_size):
 			spawn()
+			if MonsterBase.instance_counts[monster.resource_path] >= max_count:
+				interval_timer = 0
 
 
 func spawn():

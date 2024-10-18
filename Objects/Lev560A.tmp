@@ -1,15 +1,15 @@
-[gd_scene load_steps=6 format=4 uid="uid://bvvcqo3o8lkor"]
+[gd_scene load_steps=7 format=4 uid="uid://bvvcqo3o8lkor"]
 
 [ext_resource type="PackedScene" uid="uid://c0sq6ppstvqah" path="res://Objects/Player.tscn" id="1_4wnm7"]
 [ext_resource type="TileSet" uid="uid://dkvya83qm17yv" path="res://Assets/Tilesets/tileset_test.tres" id="1_ks8j3"]
 [ext_resource type="Script" path="res://Scripts/level_controller.gd" id="1_p1cro"]
 [ext_resource type="PackedScene" uid="uid://cnmv75awprgnv" path="res://Objects/spawner_zombie.tscn" id="3_c2744"]
 [ext_resource type="PackedScene" uid="uid://m8w18ii33x3r" path="res://Objects/Zombie.tscn" id="4_exaw8"]
+[ext_resource type="Script" path="res://Scripts/monster_spawner.gd" id="4_y4bo0"]
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_p1cro")
-grid_scale = 8
 
 [node name="floor" type="TileMapLayer" parent="."]
 z_index = -1
@@ -23,9 +23,15 @@ enabled = false
 tile_set = ExtResource("1_ks8j3")
 
 [node name="Player" parent="." instance=ExtResource("1_4wnm7")]
+position = Vector2(-26, 22)
 
 [node name="monsters" type="Node" parent="."]
 
 [node name="spawner_zombie" parent="monsters" instance=ExtResource("3_c2744")]
+script = ExtResource("4_y4bo0")
 monster = ExtResource("4_exaw8")
 interval_seconds = 0.01
+interval_variance = 0.0
+batch_size = 1
+distance = 750.0
+max_count = 1000

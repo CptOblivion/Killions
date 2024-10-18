@@ -27,7 +27,6 @@ modulate = Color(0.74, 0, 0.160333, 1)
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_uxf7i")
-density_push_factor = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oyn21")

@@ -1,5 +1,7 @@
 class_name GridNode
 
+# tightly coupled with LevelController and MonsterBase
+
 var monsters_head: MonsterBase
 
 var monster_count: int = 0
@@ -9,4 +11,5 @@ var position: Vector2i
 
 
 func _init(pos: Vector2i) -> void:
-  pass
+	position = pos
+	pass
