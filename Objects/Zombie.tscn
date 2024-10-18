@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://m8w18ii33x3r"]
+
+[ext_resource type="Script" path="res://Scripts/monster_base.gd" id="1_w14su"]
+[ext_resource type="Texture2D" uid="uid://cb1v3vbgwgb1d" path="res://Assets/Sprites/sprites_player.png" id="2_amj7d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oyn21"]
+radius = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_703i8"]
+atlas = ExtResource("2_amj7d")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7nwph"]
+resource_name = "player"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_703i8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Zombie" type="CharacterBody2D"]
+modulate = Color(0.74, 0, 0.160333, 1)
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_w14su")
+speed = 50
+max_health = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oyn21")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_7nwph")

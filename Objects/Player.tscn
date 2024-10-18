@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0sq6ppstvqah"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_4cyc8"]
+[ext_resource type="Texture2D" uid="uid://cb1v3vbgwgb1d" path="res://Assets/Sprites/sprites_player.png" id="1_ajck2"]
+[ext_resource type="Script" path="res://Scripts/debug_display.gd" id="2_3e5os"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xflp1"]
+radius = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_703i8"]
+atlas = ExtResource("1_ajck2")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rsxb7"]
+resource_name = "player"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_703i8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StaticBody2D" type="CharacterBody2D"]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_4cyc8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D"]
+offset_left = -624.0
+offset_top = -349.0
+offset_right = 619.0
+offset_bottom = 343.0
+text = "test"
+script = ExtResource("2_3e5os")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xflp1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_rsxb7")
